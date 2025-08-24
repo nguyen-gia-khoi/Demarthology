@@ -1,70 +1,152 @@
-# Getting Started with Create React App
+# React + Tailwind CSS + TypeScript Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Dự án React với TypeScript và Tailwind CSS được setup sẵn với cấu trúc chuẩn.
 
-## Available Scripts
+## 🚀 Công nghệ sử dụng
 
-In the project directory, you can run:
+- **React 19** - Thư viện JavaScript cho UI
+- **TypeScript** - Typed JavaScript
+- **Tailwind CSS** - Utility-first CSS framework
+- **PostCSS** - CSS processing tool
+- **Autoprefixer** - CSS vendor prefixing
 
-### `npm start`
+## 📁 Cấu trúc thư mục
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+src/
+├── components/     # Reusable components
+├── pages/         # Page components
+├── hooks/         # Custom React hooks
+├── utils/         # Utility functions
+├── types/         # TypeScript type definitions
+├── assets/        # Static assets (images, icons, etc.)
+├── App.tsx        # Main App component
+└── index.js       # Entry point
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Cài đặt và chạy
 
-### `npm test`
+### Cài đặt dependencies
+```bash
+npm install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Chạy development server
+```bash
+npm start
+```
 
-### `npm run build`
+Ứng dụng sẽ chạy tại [http://localhost:3000](http://localhost:3000)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Build production
+```bash
+npm run build
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Chạy tests
+```bash
+npm test
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🎨 Sử dụng Tailwind CSS
 
-### `npm run eject`
+Dự án đã được cấu hình sẵn Tailwind CSS. Bạn có thể sử dụng các utility classes trực tiếp trong JSX:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```tsx
+<div className="bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600">
+  Hello Tailwind!
+</div>
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📝 TypeScript
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Dự án sử dụng TypeScript để type safety. Các file có đuôi `.tsx` cho React components và `.ts` cho utility functions.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Ví dụ component với TypeScript:
 
-## Learn More
+```tsx
+interface ButtonProps {
+  children: React.ReactNode;
+  onClick?: () => void;
+  variant?: 'primary' | 'secondary';
+}
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+const Button: React.FC<ButtonProps> = ({ children, onClick, variant = 'primary' }) => {
+  return (
+    <button 
+      onClick={onClick}
+      className={`btn btn-${variant}`}
+    >
+      {children}
+    </button>
+  );
+};
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🔧 Cấu hình
 
-### Code Splitting
+### Tailwind CSS
+File cấu hình: `tailwind.config.js`
+- Content paths đã được setup cho React
+- Có thể extend theme và plugins
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### TypeScript
+File cấu hình: `tsconfig.json`
+- Strict mode enabled
+- JSX support
+- Module resolution cho Node.js
 
-### Analyzing the Bundle Size
+### PostCSS
+File cấu hình: `postcss.config.js`
+- Tailwind CSS plugin
+- Autoprefixer plugin
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 📦 Components có sẵn
 
-### Making a Progressive Web App
+### Button Component
+Component Button với nhiều variants và sizes:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```tsx
+import Button from './components/Button';
 
-### Advanced Configuration
+<Button variant="primary" size="lg">
+  Click me
+</Button>
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 🎯 Custom Hooks
 
-### Deployment
+### useLocalStorage
+Hook để quản lý localStorage với TypeScript:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```tsx
+import useLocalStorage from './hooks/useLocalStorage';
 
-### `npm run build` fails to minify
+const [user, setUser] = useLocalStorage('user', null);
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 🛠️ Development
+
+### Linting
+Dự án sử dụng ESLint với cấu hình React và TypeScript.
+
+### Formatting
+Sử dụng Prettier để format code (nếu cài đặt).
+
+## 📚 Tài liệu tham khảo
+
+- [React Documentation](https://react.dev/)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License.
