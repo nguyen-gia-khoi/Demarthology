@@ -12,7 +12,7 @@ const HomeView: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      <section id="home" className="relative w-full h-screen overflow-hidden">
+    <section id="home" className="relative w-full h-screen overflow-hidden">
       <video 
         className="absolute top-0 left-0 w-full h-full object-cover"
         autoPlay
@@ -127,8 +127,7 @@ const HomeView: React.FC = () => {
   </div>
     </section>
 
-
-       <section id="diagnosis">
+    <section id="diagnosis">
          <div className="container mx-auto px-4">
            <div className="text-center mb-16">
              <p className="text-[#145566] font-semibold mb-2">Chẩn đoán nhanh chóng</p>
@@ -159,9 +158,9 @@ const HomeView: React.FC = () => {
              </div>
            </div>
          </div>
-       </section>
+    </section>
 
-       <section id="services" className="py-20 bg-white">
+    <section id="services" className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <p className="text-[#145566] font-semibold mb-2">Năng lực hệ thống</p>
@@ -217,27 +216,24 @@ const HomeView: React.FC = () => {
             ))}
           </div>
         </div>
-      </section>
+    </section>
 
-
-      <section className="py-16 bg-gradient-to-r from-[#145566] to-[#0e3e46]">
+    <section className="py-16 bg-gradient-to-r from-[#145566] to-[#0e3e46]">
         <div className="container mx-auto px-6">
           <div className="bg-white/10 backdrop-blur-md rounded-2xl shadow-lg px-8 py-10 flex flex-col md:flex-row items-center justify-between text-center md:text-left">
-            
-            {/* Text */}
+
             <h3 className="text-3xl font-bold text-white mb-6 md:mb-0">
               Hãy bắt đầu chẩn đoán da liễu ngay hôm nay
             </h3>
 
-            {/* Button */}
             <button className="bg-white text-[#145566] px-8 py-3 rounded-xl font-semibold shadow-md hover:scale-105 hover:shadow-xl transition-transform duration-300">
               Chẩn đoán ngay 🚀
             </button>
           </div>
         </div>
-      </section>
+    </section>
 
-       <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <p className="text-[#145566] font-semibold mb-2">Đội ngũ phát triển</p>
@@ -281,79 +277,78 @@ const HomeView: React.FC = () => {
             ))}
           </div>
         </div>
-      </section>
+    </section>
 
-      <section className="py-20 bg-white">
-  <div className="container mx-auto px-4">
-    <div className="grid md:grid-cols-2 gap-16">
-      <div>
-        <p className="text-[#145566] font-semibold mb-2">Câu hỏi thường gặp</p>
-        <h2 className="text-4xl font-bold text-gray-800 mb-8">GIẢI ĐÁP THẮC MẮC</h2>
-        
-        <div className="space-y-4">
-          {[
-            {
-              question: "01. HỆ THỐNG SỬ DỤNG CÔNG NGHỆ GÌ?",
-              answer:
-                "Chúng tôi áp dụng AI đa mô hình (Multiple Models) kết hợp RAG và Gemini để phân tích ảnh da liễu, sinh mô tả bệnh, gợi ý câu hỏi và hỗ trợ phân biệt bệnh tương tự."
-            },
-            {
-              question: "02. HỆ THỐNG HOẠT ĐỘNG NHƯ THẾ NÀO?",
-              answer:
-                "Người dùng chỉ cần tải ảnh da lên. AI sẽ phân tích thông qua pipeline chẩn đoán đa tầng, đối chiếu với kho dữ liệu y khoa (Medline, Layer 1) và đưa ra kết quả chỉ trong vài giây."
-            },
-            {
-              question: "03. THÔNG TIN NGƯỜI DÙNG CÓ AN TOÀN KHÔNG?",
-              answer:
-                "Tất cả dữ liệu được mã hóa, bảo mật tuyệt đối và chỉ phục vụ cho mục đích y tế. Hệ thống tuân thủ các tiêu chuẩn quốc tế về bảo mật y khoa."
-            }
-          ].map((faq, index) => (
-            <div key={index} className="border border-gray-200 rounded-lg">
-              <button
-                className="w-full p-4 text-left font-semibold text-gray-800 hover:bg-gray-50 transition-colors"
-                onClick={() => toggleFAQ(index)}
-              >
-                {faq.question}
-              </button>
-              {activeFAQ === index && (
-                <div className="p-4 pt-0 text-gray-600">{faq.answer}</div>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-      
-      <div className="relative">
-        <div className="bg-blue-50 p-8 rounded-lg shadow-md">
-          <h3 className="text-2xl font-bold text-gray-800 mb-4">Thống kê hệ thống</h3>
-          <div className="space-y-6">
-            <div className="flex justify-between items-center">
-              <span className="text-gray-600">Dataset da liễu</span>
-              <span className="text-2xl font-bold text-[#145566]">200,000+</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-gray-600">Độ chính xác</span>
-              <span className="text-2xl font-bold text-[#145566]">85%</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-gray-600">Phiên bản phát triển</span>
-              <span className="text-2xl font-bold text-[#145566]">V1 → V9</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-gray-600">Bộ dữ liệu thử nghiệm</span>
-              <span className="text-2xl font-bold text-[#145566]">5+</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-gray-600">Thời gian chẩn đoán</span>
-              <span className="text-2xl font-bold text-[#145566]">~3 phút</span>
+    <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="grid md:grid-cols-2 gap-16">
+              <div>
+                <p className="text-[#145566] font-semibold mb-2">Câu hỏi thường gặp</p>
+                <h2 className="text-4xl font-bold text-gray-800 mb-8">GIẢI ĐÁP THẮC MẮC</h2>
+                
+                <div className="space-y-4">
+                  {[
+                    {
+                      question: "01. HỆ THỐNG SỬ DỤNG CÔNG NGHỆ GÌ?",
+                      answer:
+                        "Chúng tôi áp dụng AI đa mô hình (Multiple Models) kết hợp RAG và Gemini để phân tích ảnh da liễu, sinh mô tả bệnh, gợi ý câu hỏi và hỗ trợ phân biệt bệnh tương tự."
+                    },
+                    {
+                      question: "02. HỆ THỐNG HOẠT ĐỘNG NHƯ THẾ NÀO?",
+                      answer:
+                        "Người dùng chỉ cần tải ảnh da lên. AI sẽ phân tích thông qua pipeline chẩn đoán đa tầng, đối chiếu với kho dữ liệu y khoa (Medline, Layer 1) và đưa ra kết quả chỉ trong vài giây."
+                    },
+                    {
+                      question: "03. THÔNG TIN NGƯỜI DÙNG CÓ AN TOÀN KHÔNG?",
+                      answer:
+                        "Tất cả dữ liệu được bảo mật và chỉ phục vụ cho mục đích y tế. Hệ thống tuân thủ các tiêu chuẩn quốc tế về bảo mật y khoa."
+                    }
+                  ].map((faq, index) => (
+                    <div key={index} className="border border-gray-200 rounded-lg">
+                      <button
+                        className="w-full p-4 text-left font-semibold text-gray-800 hover:bg-gray-50 transition-colors"
+                        onClick={() => toggleFAQ(index)}
+                      >
+                        {faq.question}
+                      </button>
+                      {activeFAQ === index && (
+                        <div className="p-4 pt-0 text-gray-600">{faq.answer}</div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="relative">
+                <div className="bg-blue-50 p-8 rounded-lg shadow-md">
+                  <h3 className="text-2xl font-bold text-gray-800 mb-4">Thống kê hệ thống</h3>
+                  <div className="space-y-6">
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-600">Dataset da liễu</span>
+                      <span className="text-2xl font-bold text-[#145566]">200,000+</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-600">Độ chính xác</span>
+                      <span className="text-2xl font-bold text-[#145566]">85%</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-600">Phiên bản phát triển</span>
+                      <span className="text-2xl font-bold text-[#145566]">V1 → V9</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-600">Bộ dữ liệu thử nghiệm</span>
+                      <span className="text-2xl font-bold text-[#145566]">5+</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-600">Thời gian chẩn đoán</span>
+                      <span className="text-2xl font-bold text-[#145566]">~3 phút</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+    </section>
       <Footer/>
     </div>
   );
