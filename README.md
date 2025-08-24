@@ -1,7 +1,8 @@
 # React + Tailwind CSS + TypeScript Project
 
 Dự án React với TypeScript và Tailwind CSS được setup sẵn với cấu trúc chuẩn.
-
+## Branch
+- dev - cho development
 ## 🚀 Công nghệ sử dụng
 
 - **React 19** - Thư viện JavaScript cho UI
