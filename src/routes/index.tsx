@@ -1,15 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import UserController from '../controllers/user';
-import UserView from '../views/user';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomeView from '../views/home';
 
 const AppRoutes: React.FC = () => {
   return (
     <Router>
         <Routes>
-          <Route path="/" element={<Navigate to="/users" replace />} />
-          <Route path="/users" element={<UserController />} />
-          <Route path="/users/view" element={<UserView users={[]} />} />
+          <Route path="/" element={<HomeView />}/>
           <Route path="*" element={<div>Page Not Found</div>} />
         </Routes>
     </Router>
