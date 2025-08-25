@@ -349,9 +349,9 @@ const HomeView: React.FC = () => {
             </div>
           </div>
     </section>
-      <Footer/>
-    </div>
-  );
-};
+             <Footer/>
+     </div>
+   );
+ };
 
-export default HomeView;
+ export default HomeView;
