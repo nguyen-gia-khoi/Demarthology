@@ -13,7 +13,6 @@ const AppRoutes: React.FC = () => {
           <Route path="/diagnosis" element={<Diagnosis />}/>
           <Route path="/contact" element={<Contact />}/>
           <Route path="*" element={<div>Page Not Found</div>} />
-
         </Routes>
     </Router>
   );
