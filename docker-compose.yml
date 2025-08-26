@@ -1,0 +1,19 @@
+services:
+  server:
+    image: ghcr.io/htilssu/api-med-deploy
+    environment:
+      - PORT=8000
+    ports:
+      - "8000:8000"
+  mongo:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword@123
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
