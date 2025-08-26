@@ -20,7 +20,6 @@ const AppRoutes: React.FC = () => {
           <Route path="/medical-history" element={<MedicalHistory />}/>
           <Route path="/contact" element={<Contact />}/>
           <Route path="*" element={<div>Page Not Found</div>} />
-
         </Routes>
     </Router>
   );
