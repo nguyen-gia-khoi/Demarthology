@@ -97,13 +97,13 @@ const Navbar: React.FC = () => {
 
             <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
               <Link
-                to="/"
+                to="/profile"
                 className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-t-xl"
               >
                 <User className="w-4 h-4 mr-2" /> Hồ sơ bệnh án
               </Link>
               <Link
-                to="/"
+                to="/medical-history"
                 className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100"
               >
                 <History className="w-4 h-4 mr-2" /> Lịch sử bệnh án
