@@ -143,38 +143,6 @@ function Profile() {
                                         <p className="mt-1 text-gray-900">{profile.location || 'Chưa cập nhật'}</p>
                                     )}
                                 </div>
-
-                                {/* Website */}
-                                <div>
-                                    <label className="text-sm font-medium text-gray-700 flex items-center">
-                                        <Globe size={16} className="mr-1" />
-                                        Website
-                                    </label>
-                                    {isEditing ? (
-                                        <input
-                                            type="url"
-                                            value={editForm.website || ''}
-                                            onChange={(e) => updateEditForm('website', e.target.value)}
-                                            className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#145566]"
-                                            placeholder="https://example.com"
-                                        />
-                                    ) : (
-                                        <p className="mt-1">
-                                            {profile.website ? (
-                                                <a 
-                                                    href={profile.website} 
-                                                    target="_blank" 
-                                                    rel="noopener noreferrer"
-                                                    className="text-[#145566] hover:underline"
-                                                >
-                                                    {profile.website}
-                                                </a>
-                                            ) : (
-                                                <span className="text-gray-900">Chưa cập nhật</span>
-                                            )}
-                                        </p>
-                                    )}
-                                </div>
                             </div>
 
                             {isEditing && (

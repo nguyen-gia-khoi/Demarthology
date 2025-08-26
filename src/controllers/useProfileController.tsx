@@ -10,7 +10,6 @@ function useProfileController() {
         avatarUrl: '/avatar.webp',
         bio: 'Tôi quan tâm đến sức khỏe da và tìm hiểu về các phương pháp chẩn đoán hiện đại.',
         location: 'Hà Nội, Việt Nam',
-        website: 'https://example.com'
     });
 
     const [isEditing, setIsEditing] = useState(false);

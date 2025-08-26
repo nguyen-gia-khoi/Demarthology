@@ -6,5 +6,4 @@ export interface UserProfile {
     avatarUrl?: string;
     bio?: string;
     location?: string;
-    website?: string;
 }
