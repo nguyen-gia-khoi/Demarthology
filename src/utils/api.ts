@@ -6,7 +6,7 @@ import type {
   AxiosError,
   InternalAxiosRequestConfig
 } from 'axios';
-import { AuthUtils } from '../utils/auth';
+import { AuthUtils } from './auth';
 import { 
   ApiConfig, 
   ApiResponse, 
@@ -15,7 +15,7 @@ import {
   RequestOptions,
   PaginationParams,
   PaginatedResponse 
-} from '../types/api';
+} from '../types';
 
 /**
  * Main API Service class with Axios instance and HTTP methods
