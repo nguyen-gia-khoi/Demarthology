@@ -11,7 +11,6 @@ const HomeView: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <Navbar />
     <section id="home" className="relative w-full h-screen overflow-hidden">
       <video 
         className="absolute top-0 left-0 w-full h-full object-cover"
@@ -349,7 +348,6 @@ const HomeView: React.FC = () => {
             </div>
           </div>
     </section>
-             <Footer/>
      </div>
    );
  };

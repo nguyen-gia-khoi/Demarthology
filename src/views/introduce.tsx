@@ -5,7 +5,6 @@ import Footer from "../components/footer";
 const Introduce: React.FC = () => {
   return (
     <div className="bg-white min-h-screen">
-      <Navbar />
 
       <div className="relative w-full h-64 bg-gray-200 flex items-center justify-center">
         <img
@@ -128,7 +127,6 @@ const Introduce: React.FC = () => {
         </div>
     </section>
 
-      <Footer />
     </div>
   );
 };
