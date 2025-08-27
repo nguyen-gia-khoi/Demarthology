@@ -9,7 +9,7 @@ import Profile from "../views/profile";
 import MedicalHistory from "../views/medical-history";
 import Login from "../views/login";
 import Register from "../views/register";
-import MainLayout from "../views/layouts/main-layout";
+import MainLayout from "../components/layouts/main-layout";
 
 const AppRoutes: React.FC = () => {
   return (
