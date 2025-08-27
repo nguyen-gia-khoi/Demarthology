@@ -18,7 +18,7 @@ const AppRoutes: React.FC = () => {
               {/* Auth routes without layout */}
               <Route path="/login" element={<Login />}/>
               <Route path="/register" element={<Register />}/>
-              
+
               {/* Main app routes with layout */}
               <Route path={"/"} element={<MainLayout/>}>
                   <Route path="/" element={<HomeView />}/>
