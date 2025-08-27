@@ -7,7 +7,7 @@ import Contact from '../views/contact';
 import ArticlesView from '../views/articles';
 import Profile from "../views/profile";
 import MedicalHistory from "../views/medical-history";
-import MainLayout from "../views/layouts/main-layout";
+import MainLayout from "../components/layouts/main-layout";
 
 const AppRoutes: React.FC = () => {
   return (
