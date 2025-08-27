@@ -4,6 +4,8 @@ import HomeView from '../views/home';
 import Introduce from '../views/introduce';
 import Diagnosis from '../views/diagnosis'; 
 import Contact from '../views/contact';
+import ArticlesView from '../views/articles';
+
 const AppRoutes: React.FC = () => {
   return (
     <Router>
@@ -12,6 +14,7 @@ const AppRoutes: React.FC = () => {
           <Route path="/introduce" element={<Introduce />}/>
           <Route path="/diagnosis" element={<Diagnosis />}/>
           <Route path="/contact" element={<Contact />}/>
+          <Route path="/articles" element={<ArticlesView />}/>
           <Route path="*" element={<div>Page Not Found</div>} />
         </Routes>
     </Router>

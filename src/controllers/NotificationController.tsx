@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { type Notification } from '../data';
+import { Notification } from '../models/Notification';
 
 interface NotificationContextType {
   selectedNotification: Notification | null;
