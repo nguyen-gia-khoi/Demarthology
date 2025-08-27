@@ -1,6 +1,6 @@
 import React from 'react';
 import { Clock } from 'lucide-react';
-import { useNotification } from '../contexts/NotificationContext';
+import { useNotification } from '../controllers/NotificationController';
 
 const NotificationModal: React.FC = () => {
   const { selectedNotification, showModal, handleCloseModal, handleModalBackdropClick } = useNotification();
