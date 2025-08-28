@@ -29,8 +29,6 @@ const Login: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-gray-50">
-            <Navbar />
-            
             {/* Hero Section */}
             <section className="pt-20 pb-16 bg-gradient-to-r from-[#145566] to-[#0e3e46]">
                 <div className="container mx-auto px-6">
@@ -201,8 +199,6 @@ const Login: React.FC = () => {
                     </div>
                 </div>
             </section>
-
-            <Footer />
         </div>
     );
 };

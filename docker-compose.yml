@@ -3,13 +3,15 @@ services:
     image: ghcr.io/htilssu/api-med-deploy
     environment:
       - PORT=8000
+      - HUGGINGFACE_TOKEN=
+      - MONGO_URI=mongodb://root:root@mongo
     ports:
-      - "8000:8000"
+      - "8080:8080"
   mongo:
     image: mongo:latest
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: rootpassword@123
+      MONGO_INITDB_ROOT_PASSWORD: root
     ports:
       - "27017:27017"
     volumes:
