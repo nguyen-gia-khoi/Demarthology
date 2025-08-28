@@ -1,5 +1,6 @@
 export interface UserMedical {
     id: string;
+    name: string;
     userId: string;
     conditions: string[];
     medications: string[];

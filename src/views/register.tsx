@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Eye, EyeOff, Mail, Lock, User, MapPin, Calendar, ArrowRight } from 'lucide-react';
-import { useRegisterController } from '../controllers/useRegisterController';
-import Navbar from '../components/navbar';
-import Footer from '../components/footer';
+import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
+import {ArrowRight, Calendar, Eye, EyeOff, Lock, Mail, MapPin, User} from 'lucide-react';
+import {useRegisterController} from '../controllers/useRegisterController';
 
 const Register: React.FC = () => {
     const { formData, errors, isLoading, updateField, handleSubmit } = useRegisterController();
@@ -30,18 +28,6 @@ const Register: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-gray-50">
-            {/* Hero Section */}
-            <section className="pt-20 pb-16 bg-gradient-to-r from-[#145566] to-[#0e3e46]">
-                <div className="container mx-auto px-6">
-                    <div className="text-center text-white">
-                        <h1 className="text-4xl md:text-5xl font-bold mb-4">Đăng Ký</h1>
-                        <p className="text-lg md:text-xl opacity-90">
-                            Tạo tài khoản để trải nghiệm hệ thống chẩn đoán da liễu AI
-                        </p>
-                    </div>
-                </div>
-            </section>
-
             {/* Register Form Section */}
             <section className="py-16">
                 <div className="container mx-auto px-6">
@@ -49,8 +35,8 @@ const Register: React.FC = () => {
                         <div className="bg-white rounded-2xl shadow-lg p-8">
                             {/* Logo */}
                             <div className="text-center mb-8">
-                                <div className="w-16 h-16 bg-[#145566] rounded-full mx-auto mb-4 flex items-center justify-center">
-                                    <span className="text-white text-2xl font-bold">AI</span>
+                                <div className="w-20 h-20 bg-[#145566] rounded-full mx-auto mb-4 flex items-center justify-center">
+                                    <img src={"/logo-white.png"} alt={"Logo"}/>
                                 </div>
                                 <h2 className="text-2xl font-bold text-gray-800">Tạo tài khoản mới</h2>
                                 <p className="text-gray-600 mt-2">Trở thành thành viên của chúng tôi</p>
@@ -288,23 +274,6 @@ const Register: React.FC = () => {
                             </form>
                         </div>
 
-                        {/* Features Info */}
-                        <div className="mt-8 grid md:grid-cols-2 gap-4">
-                            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center">
-                                <div className="w-12 h-12 bg-[#145566] rounded-full mx-auto mb-3 flex items-center justify-center">
-                                    <span className="text-white text-xl">🔬</span>
-                                </div>
-                                <h3 className="text-sm font-semibold text-[#145566] mb-1">AI Chẩn đoán</h3>
-                                <p className="text-xs text-gray-600">Độ chính xác cao đến 85%</p>
-                            </div>
-                            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center">
-                                <div className="w-12 h-12 bg-[#145566] rounded-full mx-auto mb-3 flex items-center justify-center">
-                                    <span className="text-white text-xl">🔒</span>
-                                </div>
-                                <h3 className="text-sm font-semibold text-[#145566] mb-1">Bảo mật</h3>
-                                <p className="text-xs text-gray-600">Dữ liệu được bảo vệ tuyệt đối</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>
