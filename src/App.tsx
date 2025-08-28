@@ -1,7 +1,7 @@
 import React from 'react';
 import AppRoutes from './routes';
 import { NotificationProvider } from './controllers/NotificationController';
-import NotificationModal from './components/NotificationModal';
+import NotificationModal from './components/notificationModal';
 
 function App() {
   return (

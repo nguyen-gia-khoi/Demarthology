@@ -41,11 +41,11 @@ const Navbar: React.FC = () => {
     {
       name: "Dịch vụ",
       dropdown: [
-        { name: "Chẩn đoán bệnh", path: "/" },
+        { name: "Chẩn đoán bệnh", path: "/diagnosis" },
         { name: "Theo dõi tiến trình", path: "/" },
         { name: "Cảnh báo UV", path: "/" },
-        { name: "Tìm kiếm thông tin bệnh theo tên", path: "/" },
-        { name: "Gợi ý bệnh viện / phòng khám", path: "/" },
+        { name: "Tìm kiếm thông tin", path: "/" },
+        { name: "Gợi ý bệnh viện", path: "/" },
       ]
     },
   ];
@@ -63,44 +63,45 @@ const Navbar: React.FC = () => {
           </button>
           <img src="/logo.png" alt="Logo" className="w-16 h-16 object-contain" />
           <div>
-            <h1 className="text-xl font-bold text-[#145566]">Dermatology</h1>
+            <h1 className="text-l font-bold text-[#145566]">Dermatology</h1>
             <p className="text-xs text-gray-500">Smart Diagnosis</p>
           </div>
         </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center space-x-8">
-          {navItems.map((item, index) =>
-            item.dropdown ? (
-              <div key={index} className="relative group">
-                <button className="flex items-center text-gray-700 hover:text-[#145566] transition-all duration-300">
-                  {item.name}
-                  <ChevronDown className="ml-1 w-4 h-4" />
-                </button>
-                <div className="absolute top-full left-0 mt-2 w-56 bg-white shadow-lg rounded-lg border border-gray-100 p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                  {item.dropdown.map((sub, i) => (
-                    <Link
-                      key={i}
-                      to={sub.path}
-                      className="block px-4 py-2 text-gray-700 rounded-md hover:bg-gray-100 hover:text-[#145566] transition-all duration-200"
-                    >
-                      {sub.name}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <Link
-                key={index}
-                to={item.path}
-                className="text-gray-700 hover:text-[#145566] transition-all duration-300 relative group"
-              >
-                {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#145566] to-indigo-600 transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-            )
-          )}
-        </nav>
+        <nav className="hidden lg:flex items-center space-x-2 text-xs whitespace-nowrap">
+  {navItems.map((item, index) =>
+    item.dropdown ? (
+      <div key={index} className="relative group">
+        <button className="flex items-center text-gray-700 hover:text-[#145566] transition-all duration-300 text-xs whitespace-nowrap">
+          {item.name}
+          <ChevronDown className="ml-1 w-3 h-3" />
+        </button>
+        <div className="absolute top-full left-0 mt-1 w-40 bg-white shadow-lg rounded-md border border-gray-100 p-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+          {item.dropdown.map((sub, i) => (
+            <Link
+              key={i}
+              to={sub.path}
+              className="block px-2 py-1 text-gray-700 text-xs whitespace-nowrap rounded-md hover:bg-gray-100 hover:text-[#145566] transition-all duration-200"
+            >
+              {sub.name}
+            </Link>
+          ))}
+        </div>
+      </div>
+    ) : (
+      <Link
+        key={index}
+        to={item.path}
+        className="text-gray-700 hover:text-[#145566] transition-all duration-300 relative group text-xs whitespace-nowrap"
+      >
+        {item.name}
+        <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-[#145566] to-indigo-600 transition-all duration-300 group-hover:w-full"></span>
+      </Link>
+    )
+  )}
+</nav>
+
 
         {/* Right side */}
         <div className="flex items-center space-x-4">
