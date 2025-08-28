@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 
 const HomeView: React.FC = () => {
+  const navigate = useNavigate();
   const [activeFAQ, setActiveFAQ] = useState(0);
 
   const toggleFAQ = (index: number) => {
     setActiveFAQ(activeFAQ === index ? -1 : index);
+  };
+
+  const handleJoinCommunity = () => {
+    navigate('/community');
+    // Scroll to top when navigating to community
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -222,11 +230,14 @@ const HomeView: React.FC = () => {
           <div className="bg-white/10 backdrop-blur-md rounded-2xl shadow-lg px-8 py-10 flex flex-col md:flex-row items-center justify-between text-center md:text-left">
 
             <h3 className="text-3xl font-bold text-white mb-6 md:mb-0">
-              Hãy bắt đầu chẩn đoán da liễu ngay hôm nay
+              Có thắc mắc cần giải đáp? hãy tham gia cộng đồng
             </h3>
 
-            <button className="bg-white text-[#145566] px-8 py-3 rounded-xl font-semibold shadow-md hover:scale-105 hover:shadow-xl transition-transform duration-300">
-              Chẩn đoán ngay 🚀
+            <button 
+              className="bg-white text-[#145566] px-8 py-3 rounded-xl font-semibold shadow-md hover:scale-105 hover:shadow-xl transition-transform duration-300"
+              onClick={handleJoinCommunity}
+            >
+              Tham gia cộng đồng 🚀
             </button>
           </div>
         </div>
