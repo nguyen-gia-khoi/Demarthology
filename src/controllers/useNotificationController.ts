@@ -6,7 +6,7 @@ import {
   getTotalNotificationsCount,
 } from "../data";
 import { Notification } from "../models/Notification";
-import { useNotification } from "./NotificationController";
+import { useNotification } from "./useNotiProviderController";
 
 function useNotificationController() {
   const { handleNotificationClick, showModal } = useNotification();

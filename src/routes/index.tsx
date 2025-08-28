@@ -4,10 +4,11 @@ import HomeView from '../views/home';
 import Introduce from '../views/introduce';
 import Diagnosis from '../views/diagnosis'; 
 import Contact from '../views/contact';
-import ArticlesView from '../views/articles';
 import Profile from "../views/profile";
 import MedicalHistory from "../views/medical-history";
 import MainLayout from "../views/layouts/main-layout";
+import CommunityView from '../views/community';
+import QuestionDetailView from '../views/question-detail';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -20,7 +21,8 @@ const AppRoutes: React.FC = () => {
                   <Route path="/profile" element={<Profile />}/>
                   <Route path="/medical-history" element={<MedicalHistory />}/>
                   <Route path="/contact" element={<Contact />}/>
-                  <Route path="/articles" element={<ArticlesView />}/>
+                  <Route path="/community" element={<CommunityView />}/>
+                  <Route path="/community/question/:questionId" element={<QuestionDetailView/>}/>
                   <Route path="*" element={<div>Page Not Found</div>} />
               </Route>
             </Routes>

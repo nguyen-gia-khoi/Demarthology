@@ -37,7 +37,7 @@ const Navbar: React.FC = () => {
         { name: "Đọc báo / Tin tức y khoa", path: "/articles" },
       ]
     },
-    { name: "Cộng đồng", path: "/" },
+    { name: "Cộng đồng", path: "/community" },
     {
       name: "Dịch vụ",
       dropdown: [
