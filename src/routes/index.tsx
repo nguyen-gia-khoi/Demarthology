@@ -9,6 +9,7 @@ import Profile from "../views/profile";
 import MedicalHistory from "../views/medical-history";
 import MainLayout from "../components/layouts/main-layout";
 import HospitalView from '../views/hospital';
+import UV from '../views/uv';
 const AppRoutes: React.FC = () => {
   return (
     <Router>
@@ -22,6 +23,7 @@ const AppRoutes: React.FC = () => {
                   <Route path="/contact" element={<Contact />}/>
                   <Route path="/articles" element={<ArticlesView />}/>
                   <Route path="/hospital" element={<HospitalView />}/>
+                  <Route path="/uv" element={<UV />}/>
                   <Route path="*" element={<div>Page Not Found</div>} />
               </Route>
             </Routes>
