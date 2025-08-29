@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/navbar';
-import Footer from '../components/footer';
 
 const HomeView: React.FC = () => {
   const navigate = useNavigate();
@@ -233,7 +231,7 @@ const HomeView: React.FC = () => {
               Có thắc mắc cần giải đáp? hãy tham gia cộng đồng
             </h3>
 
-            <button 
+            <button
               className="bg-white text-[#145566] px-8 py-3 rounded-xl font-semibold shadow-md hover:scale-105 hover:shadow-xl transition-transform duration-300"
               onClick={handleJoinCommunity}
             >

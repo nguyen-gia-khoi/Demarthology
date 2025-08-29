@@ -1,4 +1,4 @@
-import type { AxiosRequestConfig, AxiosResponse } from 'axios';
+import type { AxiosRequestConfig } from 'axios';
 
 /**
  * API Configuration interface
@@ -74,7 +74,7 @@ export interface PaginatedResponse<T> extends ApiResponse<T[]> {
 }
 
 /**
- * Auth token response interface
+ * Auth token response interface (legacy)
  */
 export interface AuthTokenResponse {
   accessToken: string;
@@ -84,15 +84,59 @@ export interface AuthTokenResponse {
 }
 
 /**
- * Login credentials interface
+ * Login request interface
  */
 export interface LoginCredentials {
   email: string;
   password: string;
+  rememberMe?: boolean;
 }
 
 /**
- * User authentication data interface
+ * Login response interface (new API spec)
+ */
+export interface LoginResponse {
+  success: boolean;
+  message: string;
+  user: UserInfo;
+  accessToken: string;
+  tokenType: string;
+}
+
+/**
+ * User information interface (new API spec)
+ */
+export interface UserInfo {
+  email: string;
+  firstName: string;
+  lastName: string;
+  role?: string;
+}
+
+/**
+ * Register request interface (new API spec)
+ */
+export interface RegisterRequest {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  dob: string;
+}
+
+/**
+ * Register response interface (new API spec)
+ */
+export interface RegisterResponse {
+  success: boolean;
+  message: string;
+  user: UserInfo;
+  accessToken: string;
+  tokenType: string;
+}
+
+/**
+ * User authentication data interface (legacy, for backward compatibility)
  */
 export interface AuthUser {
   id: string;
@@ -100,4 +144,5 @@ export interface AuthUser {
   name: string;
   role: string;
   permissions: string[];
+  avatarUrl?: string;
 }

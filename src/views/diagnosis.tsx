@@ -40,27 +40,27 @@ const INITIAL_MESSAGES: ChatMessage[] = [
 ];
 
 const DUMMY_HISTORY: ChatHistory[] = [
-  { 
-    id: "1", 
-    title: "Ngứa rát khi đổ mồ hôi", 
+  {
+    id: "1",
+    title: "Ngứa rát khi đổ mồ hôi",
     time: "10:45",
     messages: [
       { id: "1-1", role: "user", content: "Tôi bị ngứa rát khi đổ mồ hôi", time: "10:45" },
       { id: "1-2", role: "assistant", content: "Mình đã nhận được mô tả của bạn. Hãy kiểm tra lại:\n- Triệu chứng bắt đầu khi nào?\n- Có ngứa/rát/đau không?\n- Đã dùng thuốc/bôi gì chưa?", time: "10:46" }
     ]
   },
-  { 
-    id: "2", 
-    title: "Mẩn đỏ quanh miệng", 
+  {
+    id: "2",
+    title: "Mẩn đỏ quanh miệng",
     time: "09:30",
     messages: [
       { id: "2-1", role: "user", content: "Tôi có mẩn đỏ quanh miệng", time: "09:30" },
       { id: "2-2", role: "assistant", content: "Có thể bạn bị viêm da tiếp xúc. Hãy cho mình biết thêm:\n- Triệu chứng xuất hiện từ khi nào?\n- Có tiếp xúc với chất gì mới không?", time: "09:31" }
     ]
   },
-  { 
-    id: "3", 
-    title: "Bong tróc da tay", 
+  {
+    id: "3",
+    title: "Bong tróc da tay",
     time: "Hôm qua",
     messages: [
       { id: "3-1", role: "user", content: "Da tay tôi bị bong tróc", time: "Hôm qua" },
@@ -150,7 +150,7 @@ const Bubble: React.FC<{ m: ChatMessage }> = ({ m }) => {
       transition={{ type: "spring", stiffness: 120, damping: 16 }}
       className={`flex ${isUser ? "justify-end" : "justify-start"}`}
     >
-      <div className={`flex items-end gap-3 max-w-[86%]`}>      
+      <div className={`flex items-end gap-3 max-w-[86%]`}>
         {!isUser && (
           <motion.div
             whileHover={{ rotate: 10, scale: 1.06 }}
@@ -179,8 +179,8 @@ const Bubble: React.FC<{ m: ChatMessage }> = ({ m }) => {
         </motion.div>
 
         {isUser && (
-          <motion.div 
-            whileHover={{ rotate: -10, scale: 1.06 }} 
+          <motion.div
+            whileHover={{ rotate: -10, scale: 1.06 }}
             className="w-9 h-9 rounded-full bg-gradient-to-br from-slate-200 to-slate-300 grid place-items-center shadow-xl"
           >
             <User className="w-4 h-4" />
@@ -236,14 +236,14 @@ const Diagnosis: React.FC = () => {
 
   const sendMessage = async (text: string) => {
     if (!text.trim()) return;
-    
-    const userMsg: ChatMessage = { 
-      id: crypto.randomUUID(), 
-      role: "user", 
-      content: text.trim(), 
-      time: formatTime() 
+
+    const userMsg: ChatMessage = {
+      id: crypto.randomUUID(),
+      role: "user",
+      content: text.trim(),
+      time: formatTime()
     };
-    
+
     const newMessages = [...messages, userMsg];
     setMessages(newMessages);
     setInput("");
@@ -262,8 +262,8 @@ const Diagnosis: React.FC = () => {
       setSelectedChatId(newChatId);
     } else {
       // Update existing chat
-      setChatHistory(prev => prev.map(chat => 
-        chat.id === currentChatId 
+      setChatHistory(prev => prev.map(chat =>
+        chat.id === currentChatId
           ? { ...chat, messages: newMessages }
           : chat
       ));
@@ -290,15 +290,15 @@ const Diagnosis: React.FC = () => {
       content: answer,
       time: formatTime(),
     };
-    
+
     const finalMessages = [...newMessages, assistantMsg];
     setMessages(finalMessages);
     setStreaming(null);
 
     // Update chat history with final messages
     if (currentChatId) {
-      setChatHistory(prev => prev.map(chat => 
-        chat.id === currentChatId 
+      setChatHistory(prev => prev.map(chat =>
+        chat.id === currentChatId
           ? { ...chat, messages: finalMessages }
           : chat
       ));
@@ -330,9 +330,9 @@ const Diagnosis: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100 text-slate-800 overflow-hidden">
       <div className="flex h-screen">
-        <ChatSidebar 
-          onSelect={handleSelect} 
-          onClear={handleClear} 
+        <ChatSidebar
+          onSelect={handleSelect}
+          onClear={handleClear}
           onNewChat={startNewChat}
           selectedChatId={selectedChatId}
           chatHistory={chatHistory}
@@ -382,7 +382,7 @@ const Diagnosis: React.FC = () => {
                   {streaming !== null && (
                     <motion.div layout initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex justify-start">
                       <div className="flex items-end gap-3 max-w-[86%]">
-                        <motion.div 
+                        <motion.div
                           whileHover={{ rotate: 10, scale: 1.06 }}
                           className="w-9 h-9 rounded-full bg-gradient-to-br from-[#145566] to-[#1b6b82] text-white grid place-items-center shadow-2xl"
                         >
@@ -401,7 +401,7 @@ const Diagnosis: React.FC = () => {
                   {isTyping && (
                     <motion.div layout initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex justify-start">
                       <div className="flex items-end gap-3 max-w-[86%]">
-                        <motion.div 
+                        <motion.div
                           whileHover={{ rotate: 10, scale: 1.06 }}
                           className="w-9 h-9 rounded-full bg-gradient-to-br from-[#145566] to-[#1b6b82] text-white grid place-items-center shadow-2xl"
                         >
@@ -430,29 +430,29 @@ const Diagnosis: React.FC = () => {
               <form onSubmit={handleSubmit} className="border-t border-white/40 p-4 sm:p-6 bg-gradient-to-b from-white/95 to-white/90 backdrop-blur-xl relative z-10">
                 <div className="flex items-end gap-3">
                   <div className="flex items-center gap-2">
-                    <motion.button 
-                      type="button" 
+                    <motion.button
+                      type="button"
                       whileHover={{ scale: 1.05, rotate: 5 }}
                       whileTap={{ scale: 0.95 }}
-                      className="p-2.5 rounded-xl bg-white/90 border border-white/50 hover:bg-white transition-all duration-200 shadow-lg hover:shadow-xl" 
+                      className="p-2.5 rounded-xl bg-white/90 border border-white/50 hover:bg-white transition-all duration-200 shadow-lg hover:shadow-xl"
                       title="Đính kèm"
                     >
                       <Paperclip className="w-4 h-4 text-slate-600" />
                     </motion.button>
-                    <motion.button 
-                      type="button" 
+                    <motion.button
+                      type="button"
                       whileHover={{ scale: 1.05, rotate: 5 }}
                       whileTap={{ scale: 0.95 }}
-                      className="p-2.5 rounded-xl bg-white/90 border border-white/50 hover:bg-white transition-all duration-200 shadow-lg hover:shadow-xl" 
+                      className="p-2.5 rounded-xl bg-white/90 border border-white/50 hover:bg-white transition-all duration-200 shadow-lg hover:shadow-xl"
                       title="Gửi ảnh"
                     >
                       <ImageIcon className="w-4 h-4 text-slate-600" />
                     </motion.button>
-                    <motion.button 
-                      type="button" 
+                    <motion.button
+                      type="button"
                       whileHover={{ scale: 1.05, rotate: 5 }}
                       whileTap={{ scale: 0.95 }}
-                      className="p-2.5 rounded-xl bg-white/90 border border-white/50 hover:bg-white transition-all duration-200 shadow-lg hover:shadow-xl" 
+                      className="p-2.5 rounded-xl bg-white/90 border border-white/50 hover:bg-white transition-all duration-200 shadow-lg hover:shadow-xl"
                       title="Nói chuyện"
                     >
                       <Mic className="w-4 h-4 text-slate-600" />
