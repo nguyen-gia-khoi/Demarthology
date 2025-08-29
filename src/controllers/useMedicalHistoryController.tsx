@@ -9,6 +9,7 @@ function useMedicalHistoryController() {
         setMedicalHistory([
             {
                 id: '1',
+                name: '',
                 userId: 'user1',
                 conditions: ['Eczema', 'Viêm da cơ địa'],
                 medications: ['Hydrocortisone cream 1%', 'Cetirizine 10mg'],
@@ -19,6 +20,7 @@ function useMedicalHistoryController() {
             },
             {
                 id: '2',
+                name: '',
                 userId: 'user1',
                 conditions: ['Viêm da seborrheic'],
                 medications: ['Ketoconazole shampoo', 'Vitamin D3'],

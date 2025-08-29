@@ -1,17 +1,15 @@
 import React from 'react';
 import AppRoutes from './routes';
-
-import { NotificationProvider } from './controllers/useNotiProviderController';
-import NotificationModal from './components/NotificationModal';
-
+import NotificationModal from './components/notification-modal';
+import { NotificationProvider } from "./controllers/useNotiProviderController";
 
 function App() {
-  return (
-    <NotificationProvider>
-      <AppRoutes />
-      <NotificationModal />
-    </NotificationProvider>
-  );
+    return (
+        <NotificationProvider>
+            <AppRoutes/>
+            <NotificationModal/>
+        </NotificationProvider>
+    );
 }
 
 export default App; 

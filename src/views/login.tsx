@@ -29,18 +29,6 @@ const Login: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-gray-50">
-            {/* Hero Section */}
-            <section className="pt-20 pb-16 bg-gradient-to-r from-[#145566] to-[#0e3e46]">
-                <div className="container mx-auto px-6">
-                    <div className="text-center text-white">
-                        <h1 className="text-4xl md:text-5xl font-bold mb-4">Đăng Nhập</h1>
-                        <p className="text-lg md:text-xl opacity-90">
-                            Chào mừng bạn trở lại với hệ thống chẩn đoán da liễu AI
-                        </p>
-                    </div>
-                </div>
-            </section>
-
             {/* Login Form Section */}
             <section className="py-16">
                 <div className="container mx-auto px-6">
@@ -48,8 +36,8 @@ const Login: React.FC = () => {
                         <div className="bg-white rounded-2xl shadow-lg p-8">
                             {/* Logo */}
                             <div className="text-center mb-8">
-                                <div className="w-16 h-16 bg-[#145566] rounded-full mx-auto mb-4 flex items-center justify-center">
-                                    <span className="text-white text-2xl font-bold">AI</span>
+                                <div className="w-20 h-20 bg-[#145566] rounded-full mx-auto mb-4 flex items-center justify-center">
+                                    <img alt={"logo"} src={'/logo-white.png'}/>
                                 </div>
                                 <h2 className="text-2xl font-bold text-gray-800">Đăng nhập tài khoản</h2>
                                 <p className="text-gray-600 mt-2">Truy cập vào hệ thống chẩn đoán</p>
@@ -183,18 +171,6 @@ const Login: React.FC = () => {
                                     </p>
                                 </div>
                             </form>
-                        </div>
-
-                        {/* Additional Info */}
-                        <div className="mt-8 text-center">
-                            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-                                <h3 className="text-lg font-semibold text-[#145566] mb-2">
-                                    Hệ thống chẩn đoán da liễu AI
-                                </h3>
-                                <p className="text-gray-600 text-sm">
-                                    Công nghệ AI tiên tiến với độ chính xác cao, hỗ trợ chẩn đoán nhanh chóng và hiệu quả.
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </div>
