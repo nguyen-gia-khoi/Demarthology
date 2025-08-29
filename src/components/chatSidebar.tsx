@@ -55,36 +55,29 @@ const ChatSidebar: React.FC<{
         className={`z-40 h-full overflow-hidden ${
           isOpen ? 'block' : 'hidden'
         } md:block md:relative md:translate-x-0`}
+        style={{
+          width: isOpen ? '320px' : '0px',
+          minWidth: isOpen ? '320px' : '0px',
+          flexShrink: 0
+        }}
       >
         <div className="flex flex-col w-80 bg-gradient-to-b from-white/95 to-white/90 backdrop-blur-xl border-r border-white/40 h-full overflow-hidden shadow-2xl">
           {/* Header */}
           <div className="p-4 border-b border-white/30 flex-shrink-0 to-transparent">
             <div className="flex items-center justify-between mb-3">
-              <h2 className="font-bold text-slate-800 flex items-center gap-2 text-base">
-                Lịch sử chat
-              </h2>
-              <div className="flex items-center gap-1">
-                <button
-                  onClick={onClear}
-                  className="p-2 rounded-lg hover:bg-red-500/10 hover:text-red-500 transition-colors duration-200 text-slate-600"
-                  title="Xóa tất cả"
-                >
-                  <Trash2 className="size-4" />
-                </button>
-                <button
-                  onClick={onToggle}
-                  className="p-2 rounded-lg hover:bg-slate-200/60 transition-colors duration-200 md:hidden text-slate-600"
-                  title="Đóng sidebar"
-                >
-                  <ChevronLeft className="size-4" />
-                </button>
+              <div className="flex items-center gap-3">
+                <MessageSquare className="size-5 text-[#145566] flex-shrink-0" />
+                <h2 className="font-bold text-slate-800 text-base">
+                  Lịch sử chat
+                </h2>
               </div>
+             
             </div>
             <motion.button
               onClick={onNewChat}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-medium bg-gradient-to-r from-[#145566] to-[#1c6b84] text-white shadow-lg hover:shadow-xl transition-all duration-200"
+              className="w-3/4 flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-medium bg-gradient-to-r from-[#145566] to-[#1c6b84] text-white shadow-lg hover:shadow-xl transition-all duration-200"
             >
               <MessageSquare className="size-4" />
               Chat mới

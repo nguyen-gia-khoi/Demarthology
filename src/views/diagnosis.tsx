@@ -343,14 +343,21 @@ const Diagnosis: React.FC = () => {
         <div className="relative flex-1 flex flex-col">
           <FloatingOrbs />
 
-          {/* Toggle button for mobile */}
+          {/* Toggle button for sidebar */}
           <motion.button
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.05, rotate: 5 }}
             whileTap={{ scale: 0.95 }}
-            className="md:hidden fixed top-20 left-4 z-40 p-3 rounded-xl bg-white/95 backdrop-blur-xl border border-white/40 shadow-xl hover:shadow-2xl transition-all duration-200"
+            className={`fixed z-40 p-2.5 rounded-full bg-white/90 backdrop-blur-xl border border-white/50 shadow-lg hover:shadow-xl transition-all duration-300 ${
+              isSidebarOpen ? 'top-20 left-[340px]' : 'top-20 left-4'
+            }`}
           >
-            <Menu className="w-5 h-5 text-slate-700" />
+            <motion.div
+              animate={{ rotate: isSidebarOpen ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Menu className="w-4 h-4 text-slate-600" />
+            </motion.div>
           </motion.button>
 
           {/* Main container */}
