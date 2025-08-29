@@ -124,7 +124,7 @@ const Navbar: React.FC = () => {
 
             {/* Notification Panel */}
             {(openNotifications || isClosing) && (
-              <div className={`absolute right-0 top-full mt-2 w-80 h-[420px] bg-white shadow-2xl rounded-l-xl border border-gray-200 flex flex-col z-50 ${isClosing ? "animate-slideOutRight" : "animate-slideInRight"}`}>
+              <div className={`absolute right-0 top-full mt-2 w-80 h-[420px] bg-white shadow-2xl rounded-l-xl border border-gray-200 flex flex-col z-50 ${isClosing ? "animate-slideOutUp" : "animate-slideInDown"}`}>
                 <div className="flex items-center justify-center p-4 border-b border-gray-200 bg-[#26667F] text-white rounded-tl-xl">
                   <h3 className="text-lg font-semibold">Thông báo</h3>
                 </div>

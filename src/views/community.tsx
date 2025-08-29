@@ -132,9 +132,9 @@ const SidebarFilter: React.FC<{
   };
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-4">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="font-semibold text-gray-900">Bộ lọc</h3>
+    <div className="bg-white rounded-lg border border-gray-200 p-3 lg:p-4">
+      <div className="flex items-center justify-between mb-3 lg:mb-4">
+        <h3 className="font-semibold text-gray-900 text-sm lg:text-base">Bộ lọc</h3>
         <div className="flex items-center gap-2">
           <button
             onClick={clearAllFilters}
@@ -151,8 +151,8 @@ const SidebarFilter: React.FC<{
       </div>
 
       {/* Symptom Filter */}
-      <div className="mb-6">
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+      <div className="mb-4 lg:mb-6">
+        <label className="block text-xs lg:text-sm font-medium text-gray-700 mb-1 lg:mb-2">
           Triệu chứng
         </label>
         <SymptomMultiSelect
@@ -164,8 +164,8 @@ const SidebarFilter: React.FC<{
       </div>
 
       {/* Resolved Filter */}
-      <div className="mb-6">
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+      <div className="mb-4 lg:mb-6">
+        <label className="block text-xs lg:text-sm font-medium text-gray-700 mb-1 lg:mb-2">
           Trạng thái
         </label>
         <select
@@ -180,8 +180,8 @@ const SidebarFilter: React.FC<{
       </div>
 
       {/* Date Filter */}
-      <div className="mb-6">
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+      <div className="mb-4 lg:mb-6">
+        <label className="block text-xs lg:text-sm font-medium text-gray-700 mb-1 lg:mb-2">
           Thời gian
         </label>
         <select
@@ -288,19 +288,19 @@ const CreateQuestionModal: React.FC<{
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Tiêu đề câu hỏi *
-            </label>
-            <input
-              type="text"
-              value={formData.title}
-              onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Tiêu đề câu hỏi *
+          </label>
+          <input
+            type="text"
+            value={formData.title}
+            onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg"
-              placeholder="Nhập tiêu đề câu hỏi..."
-              required
-            />
-          </div>
+            placeholder="Nhập tiêu đề câu hỏi..."
+            required
+          />
+        </div>
 
           {/* Attachments toolbar */}
           <div className="flex items-center gap-3">
@@ -355,59 +355,59 @@ const CreateQuestionModal: React.FC<{
             </div>
           )}
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Nội dung câu hỏi *
-            </label>
-            <textarea
-              value={formData.content}
-              onChange={(e) => setFormData(prev => ({ ...prev, content: e.target.value }))}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Nội dung câu hỏi *
+          </label>
+          <textarea
+            value={formData.content}
+            onChange={(e) => setFormData(prev => ({ ...prev, content: e.target.value }))}
               rows={8}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
-              placeholder="Mô tả chi tiết câu hỏi của bạn..."
-              required
-            />
-          </div>
+            placeholder="Mô tả chi tiết câu hỏi của bạn..."
+            required
+          />
+        </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Thẻ tag
-            </label>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Thẻ tag
+          </label>
             <div className="flex gap-2 mb-3">
-              <input
-                type="text"
-                value={tagInput}
-                onChange={(e) => setTagInput(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
+            <input
+              type="text"
+              value={tagInput}
+              onChange={(e) => setTagInput(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
                 className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Thêm tag..."
-              />
-              <button
-                type="button"
-                onClick={addTag}
+              placeholder="Thêm tag..."
+            />
+            <button
+              type="button"
+              onClick={addTag}
                 className="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
-              >
-                Thêm
-              </button>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {formData.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm flex items-center gap-2"
-                >
-                  #{tag}
-                  <button
-                    type="button"
-                    onClick={() => removeTag(tag)}
-                    className="text-blue-500 hover:text-blue-700 text-lg font-bold"
-                  >
-                    ×
-                  </button>
-                </span>
-              ))}
-            </div>
+            >
+              Thêm
+            </button>
           </div>
+          <div className="flex flex-wrap gap-2">
+            {formData.tags.map((tag) => (
+              <span
+                key={tag}
+                  className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm flex items-center gap-2"
+              >
+                #{tag}
+                <button
+                  type="button"
+                  onClick={() => removeTag(tag)}
+                    className="text-blue-500 hover:text-blue-700 text-lg font-bold"
+                >
+                  ×
+                </button>
+              </span>
+            ))}
+          </div>
+        </div>
 
           {/* Footer */}
           <div className="flex gap-3 pt-4 border-t border-gray-200">
@@ -418,13 +418,13 @@ const CreateQuestionModal: React.FC<{
             >
               Hủy
             </button>
-            <button
-              type="submit"
-              disabled={loading || !formData.title.trim() || !formData.content.trim()}
+          <button
+            type="submit"
+            disabled={loading || !formData.title.trim() || !formData.content.trim()}
               className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
-            >
-              {loading ? "Đang đăng..." : "Đăng câu hỏi"}
-            </button>
+          >
+            {loading ? "Đang đăng..." : "Đăng câu hỏi"}
+          </button>
           </div>
         </form>
       </div>
@@ -436,18 +436,18 @@ const FacebookStylePostCreator: React.FC<{
   onCreatePost: () => void;
 }> = ({ onCreatePost }) => {
   return (
-    <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mb-6">
-      <div className="flex items-center gap-4">
+    <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 lg:p-6 mb-4 lg:mb-6">
+      <div className="flex items-center gap-3 lg:gap-4">
         <img
           src="/avatar.webp"
           alt="User avatar"
-          className="w-12 h-12 rounded-full object-cover border-2 border-gray-200"
+          className="w-10 h-10 lg:w-12 lg:h-12 rounded-full object-cover border-2 border-gray-200"
         />
         <div 
-          className="flex-1 bg-gray-100 rounded-full px-6 py-3 cursor-pointer hover:bg-gray-200 transition-colors"
+          className="flex-1 bg-gray-100 rounded-full px-4 lg:px-6 py-2 lg:py-3 cursor-pointer hover:bg-gray-200 transition-colors"
           onClick={onCreatePost}
         >
-          <p className="text-gray-500 text-lg">bạn đang thắc mắc gì thế?</p>
+          <p className="text-gray-500 text-base lg:text-lg">bạn đang thắc mắc gì thế?</p>
         </div>
       </div>
       
@@ -600,16 +600,16 @@ const Pagination: React.FC<{
         </button>
 
         {/* Previous page */}
-        <button
-          onClick={() => onPageChange(currentPage - 1)}
-          disabled={currentPage === 1}
+      <button
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={currentPage === 1}
           className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           title="Trang trước"
-        >
+      >
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
           </svg>
-        </button>
+      </button>
 
         {/* Page numbers */}
         {pageNumbers.map((page, index) => {
@@ -622,16 +622,16 @@ const Pagination: React.FC<{
               {showEllipsisBefore && (
                 <span className="px-3 py-2 text-sm text-gray-500">...</span>
               )}
-              <button
-                onClick={() => onPageChange(page)}
+        <button
+          onClick={() => onPageChange(page)}
                 className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                  page === currentPage
+            page === currentPage
                     ? "bg-blue-600 text-white border border-blue-600"
                     : "text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 hover:border-gray-400"
-                }`}
-              >
-                {page}
-              </button>
+          }`}
+        >
+          {page}
+        </button>
               {showEllipsisAfter && (
                 <span className="px-3 py-2 text-sm text-gray-500">...</span>
               )}
@@ -640,9 +640,9 @@ const Pagination: React.FC<{
         })}
 
         {/* Next page */}
-        <button
-          onClick={() => onPageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
+      <button
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
           className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           title="Trang sau"
         >
@@ -661,7 +661,7 @@ const Pagination: React.FC<{
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M4.293 15.707a1 1 0 001.414 0l5-5a1 1 0 000-1.414l-5-5a1 1 0 00-1.414 1.414L8.586 10l-4.293 4.293a1 1 0 000 1.414zM14 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1z" clipRule="evenodd" />
           </svg>
-        </button>
+      </button>
       </div>
 
       {/* Page info */}
@@ -707,21 +707,21 @@ const CommunityView: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      <main className="container mx-auto px-6 py-8 pt-24">
+      <main className="container mx-auto px-4 lg:px-6 xl:px-8 py-6 lg:py-8 pt-20 lg:pt-24">
         <div className="mb-8">
           <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-gradient-to-br from-blue-50 via-white to-indigo-50">
             <div className="absolute -top-10 -right-10 w-48 h-48 bg-blue-200/40 rounded-full blur-2xl" />
             <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-indigo-200/40 rounded-full blur-2xl" />
-            <div className="relative p-6 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white shadow-md">
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+            <div className="relative p-4 md:p-6 lg:p-8 xl:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-6">
+              <div className="flex items-start gap-3 md:gap-4">
+                <div className="flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-xl bg-blue-600 text-white shadow-md">
+                  <svg className="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M18 10c0 3.866-3.582 7-8 7a8.86 8.86 0 01-2.707-.414L2 18l1.5-4A7.82 7.82 0 012 10c0-3.866 3.582-7 8-7s8 3.134 8 7z" />
                   </svg>
                 </div>
-                <div>
-                  <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-gray-900">Cộng đồng thảo luận</h1>
-                  <p className="mt-2 text-gray-600 max-w-2xl">Nơi mọi người đặt câu hỏi, chia sẻ kinh nghiệm chăm sóc sức khỏe và cùng nhau tìm lời giải.</p>
+            <div>
+                  <h1 className="text-2xl md:text-3xl lg:text-3xl xl:text-4xl font-extrabold tracking-tight text-gray-900">Cộng đồng thảo luận</h1>
+                  <p className="mt-2 text-sm md:text-base text-gray-600 max-w-xl lg:max-w-2xl">Nơi mọi người đặt câu hỏi, chia sẻ kinh nghiệm chăm sóc sức khỏe và cùng nhau tìm lời giải.</p>
                   
                 </div>
               </div>
@@ -731,25 +731,25 @@ const CommunityView: React.FC = () => {
         </div>
 
                 {/* Main Content with Sidebar and Notes */}
-        <div className="flex flex-col lg:flex-row gap-6 mt-8">
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 mt-8">
           {/* Left Sidebar */}
-          <div className="w-full lg:w-80 flex-shrink-0 space-y-6">
+          <div className="w-full lg:w-72 xl:w-80 flex-shrink-0 space-y-4 lg:space-y-6">
             <SidebarFilter 
               onFilterChange={handleFiltersChange}
               currentFilters={communityFilters}
             />
             
-            {/* Notes Container - Mobile */}
-            <div className="lg:hidden">
-              <div className="bg-white rounded-lg border border-gray-200 p-4">
-                <div className="flex items-center gap-2 mb-4">
+            {/* Notes Container - Mobile & Tablet (1024-1280px) */}
+            <div className="lg:block xl:hidden">
+              <div className="bg-white rounded-lg border border-gray-200 p-3 lg:p-4">
+                <div className="flex items-center gap-2 mb-3 lg:mb-4">
                   <svg className="w-5 h-5 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                   </svg>
-                  <h3 className="font-semibold text-gray-900">Lưu ý</h3>
+                  <h3 className="font-semibold text-gray-900 text-sm lg:text-base">Lưu ý</h3>
                 </div>
                 
-                <div className="space-y-3 text-sm text-gray-600">
+                <div className="space-y-2 lg:space-y-3 text-xs lg:text-sm text-gray-600">
                   <div className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
                     <p>Mô tả chi tiết triệu chứng và thời gian xuất hiện</p>
@@ -796,82 +796,82 @@ const CommunityView: React.FC = () => {
               onSubmit={handleQuestionSubmit}
             />
 
-            {loading && (
+        {loading && (
               <div className="space-y-4">
-                {[1, 2, 3].map((i) => (
-                  <div
-                    key={i}
+            {[1, 2, 3].map((i) => (
+              <div
+                key={i}
                     className="bg-white rounded-lg border border-gray-200 p-4 animate-pulse"
-                  >
+              >
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
-                      <div>
+                  <div>
                         <div className="h-3 bg-gray-200 rounded w-24 mb-1"></div>
                         <div className="h-2 bg-gray-200 rounded w-16"></div>
-                      </div>
-                    </div>
-                    <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
+                  </div>
+                </div>
+                <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
                     <div className="h-3 bg-gray-200 rounded w-full mb-1"></div>
                     <div className="h-3 bg-gray-200 rounded w-3/4"></div>
-                  </div>
-                ))}
               </div>
-            )}
+            ))}
+          </div>
+        )}
 
-            {error && (
-              <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg p-4 mb-6">
-                <div className="flex items-center">
-                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      fillRule="evenodd"
-                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  {error}
-                </div>
-              </div>
-            )}
+        {error && (
+          <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg p-4 mb-6">
+            <div className="flex items-center">
+              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fillRule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              {error}
+            </div>
+          </div>
+        )}
 
-            {!loading && !error && (
-              <>
+        {!loading && !error && (
+          <>
                 <div className="space-y-4">
-                  {questions.length === 0 ? (
-                    <div className="text-center py-12">
-                      <div className="text-gray-400 text-6xl mb-4">❓</div>
-                      <h3 className="text-xl font-semibold text-gray-600 mb-2">
-                        Chưa có câu hỏi nào
-                      </h3>
-                      <p className="text-gray-500">
-                        Hãy trở thành người đầu tiên đặt câu hỏi trong cộng đồng
-                      </p>
-                    </div>
-                  ) : (
-                    questions.map((question) => (
-                      <QuestionCard
-                        key={question._id}
-                        question={question}
-                        onLike={handleLike}
-                        onDislike={handleDislike}
-                        onClick={handleQuestionClick}
-                      />
-                    ))
-                  )}
+              {questions.length === 0 ? (
+                <div className="text-center py-12">
+                  <div className="text-gray-400 text-6xl mb-4">❓</div>
+                  <h3 className="text-xl font-semibold text-gray-600 mb-2">
+                    Chưa có câu hỏi nào
+                  </h3>
+                  <p className="text-gray-500">
+                    Hãy trở thành người đầu tiên đặt câu hỏi trong cộng đồng
+                  </p>
                 </div>
+              ) : (
+                questions.map((question) => (
+                  <QuestionCard
+                    key={question._id}
+                    question={question}
+                    onLike={handleLike}
+                    onDislike={handleDislike}
+                    onClick={handleQuestionClick}
+                  />
+                ))
+              )}
+            </div>
 
-                <Pagination
-                  currentPage={currentPage}
-                  totalPages={totalPages}
-                  onPageChange={handlePageChange}
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
                   totalItems={totalQuestions}
                   itemsPerPage={questionsPerPage}
-                />
-              </>
-            )}
+            />
+          </>
+        )}
           </div>
 
-          {/* Notes Container - Desktop */}
-          <div className="hidden lg:block w-80 flex-shrink-0">
+          {/* Notes Container - Desktop (1280px+) */}
+          <div className="hidden xl:block w-80 flex-shrink-0">
             <div className="bg-white rounded-lg border border-gray-200 p-4">
               <div className="flex items-center gap-2 mb-4">
                 <svg className="w-5 h-5 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
