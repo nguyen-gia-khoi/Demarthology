@@ -166,13 +166,13 @@ const Bubble: React.FC<{ m: ChatMessage }> = ({ m }) => {
           className={`rounded-2xl px-4 py-3 shadow-xl backdrop-blur-md transform-gpu"
             ${isUser
               ? "bg-gradient-to-br from-[#145566] to-[#1c6b84] text-white shadow-[#145566]/40"
-              : "bg-white/90 dark:bg-slate-800/90 border border-white/30 dark:border-slate-600/30 text-slate-800 dark:text-slate-100"}
+              : "bg-white/95 border border-white/40 text-slate-800 shadow-lg"}
           `}
           style={{ perspective: 800, transformStyle: "preserve-3d" }}
         >
           <div className="whitespace-pre-wrap leading-relaxed text-sm">{m.content}</div>
           {m.time && (
-            <div className={`text-xs mt-2 opacity-70 ${isUser ? "text-white/80" : "text-slate-500 dark:text-slate-400"}`}>
+            <div className={`text-xs mt-2 opacity-70 ${isUser ? "text-white/80" : "text-slate-500"}`}>
               {m.time}
             </div>
           )}
@@ -181,7 +181,7 @@ const Bubble: React.FC<{ m: ChatMessage }> = ({ m }) => {
         {isUser && (
           <motion.div 
             whileHover={{ rotate: -10, scale: 1.06 }} 
-            className="w-9 h-9 rounded-full bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-800 dark:to-slate-700 grid place-items-center shadow-xl"
+            className="w-9 h-9 rounded-full bg-gradient-to-br from-slate-200 to-slate-300 grid place-items-center shadow-xl"
           >
             <User className="w-4 h-4" />
           </motion.div>
@@ -196,7 +196,7 @@ const Suggestion: React.FC<{ label: string; onPick: (v: string) => void }> = ({ 
     onClick={() => onPick(label)}
     whileHover={{ scale: 1.05, y: -2 }}
     whileTap={{ scale: 0.95 }}
-    className="px-3 py-2 rounded-xl text-sm bg-white/80 dark:bg-slate-800/80 border border-white/40 dark:border-slate-600/40 hover:bg-white dark:hover:bg-slate-700 transition-all duration-200 shadow-lg hover:shadow-xl font-medium text-slate-700 dark:text-slate-200"
+    className="px-3 py-2 rounded-xl text-sm bg-white/90 border border-white/50 hover:bg-white transition-all duration-200 shadow-lg hover:shadow-xl font-medium text-slate-700 hover:border-[#145566]/30"
   >
     {label}
   </motion.button>
@@ -328,163 +328,164 @@ const Diagnosis: React.FC = () => {
   };
 
   return (
-    <div className="flex h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-950 text-slate-800 dark:text-slate-100 overflow-hidden">
-      {/* Sidebar */}
-      <ChatSidebar 
-        onSelect={handleSelect} 
-        onClear={handleClear} 
-        onNewChat={startNewChat}
-        selectedChatId={selectedChatId}
-        chatHistory={chatHistory}
-        isOpen={isSidebarOpen}
-        onToggle={() => setIsSidebarOpen(!isSidebarOpen)}
-      />
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100 text-slate-800 overflow-hidden">
+      <div className="flex h-screen">
+        <ChatSidebar 
+          onSelect={handleSelect} 
+          onClear={handleClear} 
+          onNewChat={startNewChat}
+          selectedChatId={selectedChatId}
+          chatHistory={chatHistory}
+          isOpen={isSidebarOpen}
+          onToggle={() => setIsSidebarOpen(!isSidebarOpen)}
+        />
 
-      <div className="relative flex-1 flex flex-col max-h-screen">
-        <FloatingOrbs />
+        <div className="relative flex-1 flex flex-col">
+          <FloatingOrbs />
 
-        {/* Toggle button for mobile */}
-        <motion.button
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="md:hidden fixed top-4 left-4 z-50 p-3 rounded-xl bg-white/90 dark:bg-slate-800/90 backdrop-blur-xl border border-white/30 dark:border-slate-600/30 shadow-xl hover:shadow-2xl transition-all duration-200"
-        >
-          <Menu className="w-5 h-5 text-slate-700 dark:text-slate-300" />
-        </motion.button>
-
-        {/* Main container */}
-        <div className="flex-1 overflow-y-auto p-4 max-h-[calc(100vh-100px)]">
-          <motion.div
-            initial={{ scale: 0.995, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.45, ease: "easeOut" }}
-            className="relative rounded-3xl border border-white/40 dark:border-slate-600/30 bg-gradient-to-br from-white/80 to-white/60 dark:from-slate-900/80 dark:to-slate-800/60 backdrop-blur-xl shadow-2xl overflow-hidden h-full flex flex-col max-h-[calc(100vh-3rem)]"
+          {/* Toggle button for mobile */}
+          <motion.button
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="md:hidden fixed top-20 left-4 z-40 p-3 rounded-xl bg-white/95 backdrop-blur-xl border border-white/40 shadow-xl hover:shadow-2xl transition-all duration-200"
           >
-            {/* Gradient border effect */}
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#145566]/20 via-transparent to-[#1c6b84]/20 opacity-50" />
-            <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-white/80 dark:via-white/30 to-transparent" />
+            <Menu className="w-5 h-5 text-slate-700" />
+          </motion.button>
 
-            {/* Chat messages area */}
-            <div ref={listRef} className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 min-h-0 relative z-10">
-              <AnimatePresence initial={false} mode="popLayout">
-                {messages.map((m) => (
-                  <Bubble key={m.id} m={m} />
-                ))}
+          {/* Main container */}
+          <div className="flex-1 overflow-y-auto p-4 max-h-[calc(100vh-80px)]">
+            <motion.div
+              initial={{ scale: 0.995, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.45, ease: "easeOut" }}
+              className="relative rounded-3xl border border-white/50 bg-gradient-to-br from-white/95 to-white/90 backdrop-blur-xl shadow-2xl overflow-hidden h-full flex flex-col max-h-[calc(100vh-100px)]"
+            >
+              {/* Gradient border effect */}
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#145566]/20 via-transparent to-[#1c6b84]/20 opacity-50" />
+              <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
 
-                {streaming !== null && (
-                  <motion.div layout initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex justify-start">
-                    <div className="flex items-end gap-3 max-w-[86%]">
-                      <motion.div 
-                        whileHover={{ rotate: 10, scale: 1.06 }}
-                        className="w-9 h-9 rounded-full bg-gradient-to-br from-[#145566] to-[#1b6b82] text-white grid place-items-center shadow-2xl"
-                      >
-                        <Bot className="w-4 h-4" />
-                      </motion.div>
-                      <motion.div
-                        whileHover={{ rotateY: 6, scale: 1.02 }}
-                        className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border border-white/30 dark:border-slate-600/30 text-slate-800 dark:text-slate-100 rounded-2xl px-4 py-3 shadow-xl"
-                      >
-                        <div className="whitespace-pre-wrap leading-relaxed text-sm">{streaming.length === 0 ? <TypingDots /> : streaming}</div>
-                      </motion.div>
-                    </div>
-                  </motion.div>
-                )}
+              {/* Chat messages area */}
+              <div ref={listRef} className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 min-h-0 relative z-10">
+                <AnimatePresence initial={false} mode="popLayout">
+                  {messages.map((m) => (
+                    <Bubble key={m.id} m={m} />
+                  ))}
 
-                {isTyping && (
-                  <motion.div layout initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex justify-start">
-                    <div className="flex items-end gap-3 max-w-[86%]">
-                      <motion.div 
-                        whileHover={{ rotate: 10, scale: 1.06 }}
-                        className="w-9 h-9 rounded-full bg-gradient-to-br from-[#145566] to-[#1b6b82] text-white grid place-items-center shadow-2xl"
-                      >
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                      </motion.div>
-                      <motion.div
-                        whileHover={{ rotateY: 6, scale: 1.02 }}
-                        className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border border-white/30 dark:border-slate-600/30 text-slate-800 dark:text-slate-100 rounded-2xl px-4 py-3 shadow-xl"
-                      >
-                        <TypingDots />
-                      </motion.div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+                  {streaming !== null && (
+                    <motion.div layout initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex justify-start">
+                      <div className="flex items-end gap-3 max-w-[86%]">
+                        <motion.div 
+                          whileHover={{ rotate: 10, scale: 1.06 }}
+                          className="w-9 h-9 rounded-full bg-gradient-to-br from-[#145566] to-[#1b6b82] text-white grid place-items-center shadow-2xl"
+                        >
+                          <Bot className="w-4 h-4" />
+                        </motion.div>
+                        <motion.div
+                          whileHover={{ rotateY: 6, scale: 1.02 }}
+                          className="bg-white/95 backdrop-blur-md border border-white/40 text-slate-800 rounded-2xl px-4 py-3 shadow-lg"
+                        >
+                          <div className="whitespace-pre-wrap leading-relaxed text-sm">{streaming.length === 0 ? <TypingDots /> : streaming}</div>
+                        </motion.div>
+                      </div>
+                    </motion.div>
+                  )}
 
-            {/* Suggestions */}
-            <div className="px-4 sm:px-6 pb-3 flex flex-wrap gap-2 relative z-10">
-              <Suggestion label="Mẩn đỏ quanh miệng 3 ngày" onPick={pickSuggestion} />
-              <Suggestion label="Ngứa rát khi đổ mồ hôi" onPick={pickSuggestion} />
-              <Suggestion label="Bong tróc da ở khuỷu tay" onPick={pickSuggestion} />
-            </div>
+                  {isTyping && (
+                    <motion.div layout initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex justify-start">
+                      <div className="flex items-end gap-3 max-w-[86%]">
+                        <motion.div 
+                          whileHover={{ rotate: 10, scale: 1.06 }}
+                          className="w-9 h-9 rounded-full bg-gradient-to-br from-[#145566] to-[#1b6b82] text-white grid place-items-center shadow-2xl"
+                        >
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        </motion.div>
+                        <motion.div
+                          whileHover={{ rotateY: 6, scale: 1.02 }}
+                          className="bg-white/95 backdrop-blur-md border border-white/40 text-slate-800 rounded-2xl px-4 py-3 shadow-lg"
+                        >
+                          <TypingDots />
+                        </motion.div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
 
-            {/* Input form */}
-            <form onSubmit={handleSubmit} className="border-t border-white/30 dark:border-slate-600/30 p-4 sm:p-6 bg-gradient-to-b from-white/80 to-white/60 dark:from-slate-900/80 dark:to-slate-800/60 backdrop-blur-xl relative z-10">
-              <div className="flex items-end gap-3">
-                <div className="flex items-center gap-2">
-                  <motion.button 
-                    type="button" 
-                    whileHover={{ scale: 1.05, rotate: 5 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="p-2.5 rounded-xl bg-white/80 dark:bg-slate-800/80 border border-white/40 dark:border-slate-600/40 hover:bg-white dark:hover:bg-slate-700 transition-all duration-200 shadow-lg hover:shadow-xl" 
-                    title="Đính kèm"
-                  >
-                    <Paperclip className="w-4 h-4 text-slate-600 dark:text-slate-300" />
-                  </motion.button>
-                  <motion.button 
-                    type="button" 
-                    whileHover={{ scale: 1.05, rotate: 5 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="p-2.5 rounded-xl bg-white/80 dark:bg-slate-800/80 border border-white/40 dark:border-slate-600/40 hover:bg-white dark:hover:bg-slate-700 transition-all duration-200 shadow-lg hover:shadow-xl" 
-                    title="Gửi ảnh"
-                  >
-                    <ImageIcon className="w-4 h-4 text-slate-600 dark:text-slate-300" />
-                  </motion.button>
-                  <motion.button 
-                    type="button" 
-                    whileHover={{ scale: 1.05, rotate: 5 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="p-2.5 rounded-xl bg-white/80 dark:bg-slate-800/80 border border-white/40 dark:border-slate-600/40 hover:bg-white dark:hover:bg-slate-700 transition-all duration-200 shadow-lg hover:shadow-xl" 
-                    title="Nói chuyện"
-                  >
-                    <Mic className="w-4 h-4 text-slate-600 dark:text-slate-300" />
-                  </motion.button>
-                </div>
+              {/* Suggestions */}
+              <div className="px-4 sm:px-6 pb-3 flex flex-wrap gap-2 relative z-10">
+                <Suggestion label="Mẩn đỏ quanh miệng 3 ngày" onPick={pickSuggestion} />
+                <Suggestion label="Ngứa rát khi đổ mồ hôi" onPick={pickSuggestion} />
+                <Suggestion label="Bong tróc da ở khuỷu tay" onPick={pickSuggestion} />
+              </div>
 
-                <div className="flex-1">
-                  <div className="relative">
-                    <textarea
-                      value={input}
-                      onChange={(e) => setInput(e.target.value)}
-                      rows={1}
-                      placeholder="Nhập tin nhắn…"
-                      className="w-full resize-none rounded-2xl border border-white/40 dark:border-slate-600/40 bg-white/90 dark:bg-slate-800/90 backdrop-blur px-4 py-3 pr-16 shadow-lg focus:outline-none focus:ring-2 focus:ring-[#145566]/60 focus:border-[#145566]/40 text-sm transition-all duration-200"
-                      onInput={(e) => {
-                        const t = e.currentTarget;
-                        t.style.height = "auto";
-                        t.style.height = Math.min(t.scrollHeight, 100) + "px";
-                      }}
-                    />
-                    <div className="absolute right-3 bottom-2.5 flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
-                      <Sparkles className="w-4 h-4 text-[#145566]" />
-                      <span className="font-medium">AI Ready</span>
+              {/* Input form */}
+              <form onSubmit={handleSubmit} className="border-t border-white/40 p-4 sm:p-6 bg-gradient-to-b from-white/95 to-white/90 backdrop-blur-xl relative z-10">
+                <div className="flex items-end gap-3">
+                  <div className="flex items-center gap-2">
+                    <motion.button 
+                      type="button" 
+                      whileHover={{ scale: 1.05, rotate: 5 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="p-2.5 rounded-xl bg-white/90 border border-white/50 hover:bg-white transition-all duration-200 shadow-lg hover:shadow-xl" 
+                      title="Đính kèm"
+                    >
+                      <Paperclip className="w-4 h-4 text-slate-600" />
+                    </motion.button>
+                    <motion.button 
+                      type="button" 
+                      whileHover={{ scale: 1.05, rotate: 5 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="p-2.5 rounded-xl bg-white/90 border border-white/50 hover:bg-white transition-all duration-200 shadow-lg hover:shadow-xl" 
+                      title="Gửi ảnh"
+                    >
+                      <ImageIcon className="w-4 h-4 text-slate-600" />
+                    </motion.button>
+                    <motion.button 
+                      type="button" 
+                      whileHover={{ scale: 1.05, rotate: 5 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="p-2.5 rounded-xl bg-white/90 border border-white/50 hover:bg-white transition-all duration-200 shadow-lg hover:shadow-xl" 
+                      title="Nói chuyện"
+                    >
+                      <Mic className="w-4 h-4 text-slate-600" />
+                    </motion.button>
+                  </div>
+
+                  <div className="flex-1">
+                    <div className="relative">
+                      <textarea
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        rows={1}
+                        placeholder="Nhập tin nhắn…"
+                        className="w-full resize-none rounded-2xl border border-white/50 bg-white/95 backdrop-blur px-4 py-3 pr-16 shadow-lg focus:outline-none focus:ring-2 focus:ring-[#145566]/60 focus:border-[#145566]/40 text-sm transition-all duration-200 text-slate-800 placeholder-slate-500"
+                        onInput={(e) => {
+                          const t = e.currentTarget;
+                          t.style.height = "auto";
+                          t.style.height = Math.min(t.scrollHeight, 100) + "px";
+                        }}
+                      />
+                      <div className="absolute right-3 bottom-2.5 flex items-center gap-1.5 text-xs text-slate-500">
+                        <Sparkles className="w-4 h-4 text-[#145566]" />
+                        <span className="font-medium">AI Ready</span>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <motion.button
-                  type="submit"
-                  whileHover={{ scale: 1.05, rotateX: -4, rotateY: 6 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl font-semibold bg-gradient-to-r from-[#145566] to-[#1c6b84] text-white shadow-xl hover:shadow-2xl active:scale-[0.98] transition-all duration-200"
-                >
-                  <Send className="w-4 h-4" />
-                  Gửi
-                </motion.button>
-              </div>
-            </form>
-          </motion.div>
+                  <motion.button
+                    type="submit"
+                    whileHover={{ scale: 1.05, rotateX: -4, rotateY: 6 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl font-semibold bg-gradient-to-r from-[#145566] to-[#1c6b84] text-white shadow-xl hover:shadow-2xl active:scale-[0.98] transition-all duration-200"
+                  >
+                    <Send className="w-4 h-4" />
+                    Gửi
+                  </motion.button>
+                </div>
+              </form>
+            </motion.div>
+          </div>
         </div>
       </div>
     </div>
