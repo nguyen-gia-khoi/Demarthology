@@ -1,10 +1,12 @@
 export interface LoginFormData {
     email: string;
     password: string;
+    rememberMe?: boolean;
 }
 
 export interface RegisterFormData {
-    name: string;
+    firstName: string;
+    lastName: string;
     email: string;
     password: string;
     confirmPassword: string;
@@ -26,11 +28,13 @@ export interface AuthResponse {
 }
 
 export interface FormValidationErrors {
-    name?: string;
+    firstName?: string;
+    lastName?: string;
     email?: string;
     password?: string;
     confirmPassword?: string;
     dob?: string;
     location?: string;
+    rememberMe?: string;
     general?: string;
 }

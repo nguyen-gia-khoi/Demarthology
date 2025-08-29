@@ -1,14 +1,17 @@
 import React from 'react';
 import AppRoutes from './routes';
+import {AuthProvider} from './contexts/AuthContext';
 import NotificationModal from './components/notification-modal';
-import { NotificationProvider } from "./controllers/useNotiProviderController";
+import {NotificationProvider} from "./controllers/useNotiProviderController";
 
 function App() {
     return (
-        <NotificationProvider>
-            <AppRoutes/>
-            <NotificationModal/>
-        </NotificationProvider>
+        <AuthProvider>
+            <NotificationProvider>
+                <AppRoutes/>
+                <NotificationModal/>
+            </NotificationProvider>
+        </AuthProvider>
     );
 }
 
