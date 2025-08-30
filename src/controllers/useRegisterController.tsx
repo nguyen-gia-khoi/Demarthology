@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { RegisterFormData, AuthResponse, FormValidationErrors } from '../models/auth';
+import { AuthService } from '../services/auth';
 
 export const useRegisterController = () => {
     const [formData, setFormData] = useState<RegisterFormData>({
-        name: '',
+        firstName: '',
+        lastName: '',
         email: '',
         password: '',
         confirmPassword: '',
@@ -12,6 +14,8 @@ export const useRegisterController = () => {
     });
     const [errors, setErrors] = useState<FormValidationErrors>({});
     const [isLoading, setIsLoading] = useState(false);
+
+    const authService = AuthService.getInstance();
 
     const updateField = (field: keyof RegisterFormData, value: string) => {
         setFormData(prev => ({ ...prev, [field]: value }));
@@ -24,10 +28,16 @@ export const useRegisterController = () => {
     const validateForm = (): boolean => {
         const newErrors: FormValidationErrors = {};
 
-        if (!formData.name.trim()) {
-            newErrors.name = 'Tên là bắt buộc';
-        } else if (formData.name.trim().length < 2) {
-            newErrors.name = 'Tên phải có ít nhất 2 ký tự';
+        if (!formData.firstName.trim()) {
+            newErrors.firstName = 'Họ là bắt buộc';
+        } else if (formData.firstName.trim().length < 2) {
+            newErrors.firstName = 'Họ phải có ít nhất 2 ký tự';
+        }
+
+        if (!formData.lastName.trim()) {
+            newErrors.lastName = 'Tên là bắt buộc';
+        } else if (formData.lastName.trim().length < 2) {
+            newErrors.lastName = 'Tên phải có ít nhất 2 ký tự';
         }
 
         if (!formData.email) {
@@ -71,28 +81,33 @@ export const useRegisterController = () => {
         setIsLoading(true);
 
         try {
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1500));
-
-            // Mock successful registration
-            const mockUser = {
-                id: '1',
-                name: formData.name,
+            // Call real API for registration with correct structure
+            const userData = {
                 email: formData.email,
-                avatarUrl: '/avatar.webp'
+                password: formData.password,
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                dob: formData.dob
             };
+
+            const response = await authService.register(userData);
 
             setIsLoading(false);
             return {
                 success: true,
-                message: 'Đăng ký thành công!',
-                user: mockUser
+                message: response.message,
+                user: {
+                    id: 'user-' + Date.now(),
+                    name: `${response.user.firstName} ${response.user.lastName}`,
+                    email: response.user.email,
+                    avatarUrl: '/avatar.webp'
+                }
             };
-        } catch (error) {
+        } catch (error: any) {
             setIsLoading(false);
             return {
                 success: false,
-                message: 'Có lỗi xảy ra, vui lòng thử lại'
+                message: error.message || 'Có lỗi xảy ra, vui lòng thử lại'
             };
         }
     };

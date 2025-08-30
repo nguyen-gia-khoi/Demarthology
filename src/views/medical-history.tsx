@@ -49,7 +49,8 @@ export default function MedicalHistory() {
                                     <div className="bg-gradient-to-r from-[#145566] to-[#145569] text-white p-4">
                                         <div className="flex items-center justify-between">
                                             <div>
-                                                <h3 className="text-lg font-semibold">Bệnh án #{record.id}</h3>
+                                                {/*TODO: sua thanh ten benh*/}
+                                                <h3 className="text-lg font-semibold">{record.name}</h3>
                                                 <p className="text-sm opacity-90">
                                                     Cập nhật lần cuối: {formatDate(record.lastUpdated)}
                                                 </p>

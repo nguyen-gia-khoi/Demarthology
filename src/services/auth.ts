@@ -3,7 +3,10 @@ import {
   ApiResponse, 
   LoginCredentials, 
   AuthTokenResponse, 
+  LoginResponse,
+  RegisterResponse,
   AuthUser,
+  UserInfo,
   PaginatedResponse 
 } from '../types/api';
 import { AuthUtils } from '../utils/auth';
@@ -28,21 +31,30 @@ export class AuthService {
 
   /**
    * Login user with credentials
+   * Stores the returned token in localStorage with the same key that axios instance reads from
    */
-  async login(credentials: LoginCredentials): Promise<AuthTokenResponse> {
-    const response = await this.apiService.post<ApiResponse<AuthTokenResponse>>(
+  async login(credentials: LoginCredentials): Promise<LoginResponse> {
+    const response = await this.apiService.post<LoginResponse>(
       '/auth/login',
       credentials,
       { skipAuth: true } // Skip auth for login request
     );
 
     // Store tokens after successful login
-    if (response.data.accessToken) {
-      AuthUtils.setAuthToken(response.data.accessToken);
-      AuthUtils.setRefreshToken(response.data.refreshToken);
+    // This uses the same key ('auth_token') that axios interceptor reads from
+    if (response.accessToken) {
+      AuthUtils.setAuthToken(response.accessToken);
+      
+      // Verify token was stored correctly and is immediately available for axios
+      if (!AuthUtils.verifyTokenStorage(response.accessToken)) {
+        throw new Error('Failed to store authentication token in localStorage');
+      }
+      
+      // Note: New API doesn't provide refresh token in login response
+      // This might need to be handled differently or stored separately
     }
 
-    return response.data;
+    return response;
   }
 
   /**
@@ -51,14 +63,22 @@ export class AuthService {
   async register(userData: {
     email: string;
     password: string;
-    name: string;
-  }): Promise<AuthUser> {
-    const response = await this.apiService.post<ApiResponse<AuthUser>>(
+    firstName: string;
+    lastName: string;
+    dob: string;
+  }): Promise<RegisterResponse> {
+    const response = await this.apiService.post<RegisterResponse>(
       '/auth/register',
       userData,
       { skipAuth: true }
     );
-    return response.data;
+    
+    // Store tokens after successful registration
+    if (response.accessToken) {
+      AuthUtils.setAuthToken(response.accessToken);
+    }
+    
+    return response;
   }
 
   /**
@@ -76,11 +96,25 @@ export class AuthService {
   }
 
   /**
+   * Convert UserInfo to AuthUser for backward compatibility
+   */
+  private convertUserInfoToAuthUser(userInfo: UserInfo): AuthUser {
+    return {
+      id: 'user-' + Date.now(), // Generate ID since new API doesn't provide it
+      email: userInfo.email,
+      name: `${userInfo.firstName} ${userInfo.lastName}`,
+      role: userInfo.role || 'user',
+      permissions: ['read', 'write'], // Default permissions
+      avatarUrl: '/avatar.webp' // Default avatar
+    };
+  }
+
+  /**
    * Get current user profile
    */
   async getCurrentUser(): Promise<AuthUser> {
-    const response = await this.apiService.get<ApiResponse<AuthUser>>('/auth/me');
-    return response.data;
+    const response = await this.apiService.get<ApiResponse<UserInfo>>('/auth/me');
+    return this.convertUserInfoToAuthUser(response.data);
   }
 
   /**
