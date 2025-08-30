@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { RegisterFormData, AuthResponse, FormValidationErrors } from '../models/auth';
 import { AuthService } from '../services/auth';
+import { useAuth } from '../contexts/AuthContext';
 
 export const useRegisterController = () => {
     const [formData, setFormData] = useState<RegisterFormData>({
@@ -16,6 +17,7 @@ export const useRegisterController = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     const authService = AuthService.getInstance();
+    const { refreshAuth } = useAuth();
 
     const updateField = (field: keyof RegisterFormData, value: string) => {
         setFormData(prev => ({ ...prev, [field]: value }));
@@ -91,6 +93,10 @@ export const useRegisterController = () => {
             };
 
             const response = await authService.register(userData);
+
+            // Registration already stores the token, just refresh the auth context
+            // to pick up the new user state without making additional API calls
+            await refreshAuth();
 
             setIsLoading(false);
             return {
