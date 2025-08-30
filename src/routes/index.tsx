@@ -5,6 +5,7 @@ import Introduce from '../views/introduce';
 import Diagnosis from '../views/diagnosis';
 import Contact from '../views/contact';
 import Profile from "../views/profile";
+import ArticlesView from '../views/articles';
 import MedicalHistory from "../views/medical-history";
 import Login from "../views/login";
 import Register from "../views/register";
@@ -30,6 +31,7 @@ const AppRoutes: React.FC = () => {
                     <Route path="/profile" element={<Profile/>}/>
                     <Route path="/medical-history" element={<MedicalHistory/>}/>
                     <Route path="/contact" element={<Contact/>}/>
+                    <Route path="/articles" element={<ArticlesView />}/>
                     <Route path="/hospital" element={<HospitalView/>}/>
                     <Route path="/uv" element={<UV/>}/>
                     <Route path="/community" element={<CommunityView/>}/>

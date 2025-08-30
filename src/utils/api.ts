@@ -26,6 +26,13 @@ export class ApiService {
     private config: ApiConfig;
 
     private constructor(config?: Partial<ApiConfig>) {
+        // Debug: Log environment variable
+        console.log('Environment check:', {
+            REACT_APP_API_URL: process.env.REACT_APP_API_URL,
+            NODE_ENV: process.env.NODE_ENV,
+            allEnv: process.env
+        });
+
         this.config = {
             baseURL: process.env.REACT_APP_API_URL || 'http://localhost:8000',
             timeout: 10000,
@@ -34,6 +41,9 @@ export class ApiService {
             },
             ...config
         };
+
+        // Debug: Log final baseURL
+        console.log('Final baseURL:', this.config.baseURL);
 
         this.axiosInstance = this.createAxiosInstance();
         this.setupInterceptors();
