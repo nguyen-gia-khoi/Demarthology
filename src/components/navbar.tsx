@@ -35,6 +35,7 @@ const Navbar: React.FC = () => {
       dropdown: [
         { name: "Giới thiệu", path: "/introduce" },
         { name: "Liên hệ", path: "/contact" },
+        { name: "Đọc báo / Tin tức y khoa", path: "/articles" },
       ]
     },
     { name: "Cộng đồng", path: "/community" },
