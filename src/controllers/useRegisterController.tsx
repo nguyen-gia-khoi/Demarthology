@@ -17,7 +17,7 @@ export const useRegisterController = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     const authService = AuthService.getInstance();
-    const { login } = useAuth();
+    const { refreshAuth } = useAuth();
 
     const updateField = (field: keyof RegisterFormData, value: string) => {
         setFormData(prev => ({ ...prev, [field]: value }));
@@ -94,11 +94,9 @@ export const useRegisterController = () => {
 
             const response = await authService.register(userData);
 
-            // Auto-login after successful registration
-            await login({
-                email: formData.email,
-                password: formData.password
-            });
+            // Registration already stores the token, just refresh the auth context
+            // to pick up the new user state without making additional API calls
+            await refreshAuth();
 
             setIsLoading(false);
             return {
