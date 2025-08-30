@@ -27,6 +27,16 @@ export interface AuthResponse {
     user?: AuthUser;
 }
 
+export interface ForgotPasswordFormData {
+    email: string;
+}
+
+export interface ResetPasswordFormData {
+    token: string;
+    password: string;
+    confirmPassword: string;
+}
+
 export interface FormValidationErrors {
     firstName?: string;
     lastName?: string;
@@ -36,5 +46,6 @@ export interface FormValidationErrors {
     dob?: string;
     location?: string;
     rememberMe?: string;
+    token?: string;
     general?: string;
 }
